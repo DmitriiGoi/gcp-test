@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<link th:href="@{/styles/champions.css}" rel="stylesheet"/>
+<script type="text/javascript" th:src="@{/js/actions.js}"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>League of Legends Champion Word Chain Game</title>
+</head>
+<body>
+<h1>League of Legends Champion Word Chain Game</h1>
+<p>Enter names of League of Legends champions that start with the last letter of the previous champion:</p>
+<input type="text" id="wordInput" placeholder="Enter a champion name">
+<div id="wordList"></div>
+<div id="result"></div>
+<div id="timer">Time left: 5</div>
+<script>
+    let timeLeft = 5;
+    let timerId;
+    let successfulAttempts = 0;
+    const wordListElement = document.getElementById('wordList');
+    const resultElement = document.getElementById('result');
+    const timerElement = document.getElementById('timer');
+    let previousChampion = lolChampions[Math.floor(Math.random()*lolChampions.length)];
+    const listItem = document.createElement('li');
+    listItem.textContent = previousChampion;
+    wordListElement.appendChild(listItem);
+
+    function startTimer() {
+        clearTimeout(timerId);
+        timeLeft = 5;
+        updateTimer();
+        timerId = setInterval(() => {
+            timeLeft--;
+            if (timeLeft >= 0) {
+                updateTimer();
+            } else {
+                resultElement.textContent = `Time is up! You named ${successfulAttempts} champions successfully.`;
+                clearInterval(timerId);
+            }
+        }, 1000); // Update timer every second
+    }
+
+    function updateTimer() {
+        timerElement.textContent = `Time left: ${timeLeft}`;
+    }
+
+
+    function isValidChampion(champion) {
+        return lolChampions.some(t => {
+            let bool = champion.toLowerCase().replaceAll("\'", "").replaceAll(" ", "").replaceAll("&", "") ===
+                t.toLowerCase().replaceAll("\'", "").replaceAll(" ", "").replaceAll("&", "");
+            if (bool) {
+                let index = lolChampions.indexOf(t);
+                lolChampions.splice(index, 1);
+            }
+            return bool;
+
+        });
+    }
+
+    function isChainChampion(champion) {
+        return previousChampion.toLowerCase().endsWith(champion.toLowerCase()[0]);
+    }
+
+    function clearInput() {
+        document.getElementById('wordInput').value = '';
+    }
+
+    function updateWordList(champion) {
+        const listItem = document.createElement('li');
+        listItem.textContent = champion;
+        wordListElement.appendChild(listItem);
+        successfulAttempts++;
+    }
+
+    function updateResult(isValid, isChain) {
+        if (isValid && isChain) {
+            resultElement.textContent = 'Good job! Keep it going.';
+            startTimer();
+        } else if (!isValid) {
+            resultElement.textContent = 'Please enter a valid League of Legends champion name.';
+        } else if (!isChain) {
+            resultElement.textContent = 'Champion name should start with the last letter of the previous champion.';
+        }
+    }
+
+    document.getElementById('wordInput').addEventListener('keyup', function(event) {
+        if (event.key === 'Enter') {
+            const champion = this.value.trim();
+            if (isValidChampion(champion)) {
+                if (previousChampion === '' || isChainChampion(champion)) {
+                    updateWordList(champion);
+                    previousChampion = champion;
+                    updateResult(true, true);
+                } else {
+                    updateResult(true, false);
+                }
+                clearInput();
+            } else {
+                updateResult(false, true);
+            }
+        }
+    });
+</script>
+</body>
+</html>

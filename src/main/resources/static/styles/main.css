@@ -1,0 +1,32 @@
+.container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+table {
+    margin: 0 auto;
+}
+
+td {
+    padding: 10px;
+    border: 1px solid #000;
+    cursor: pointer;
+}
+
+td.selected {
+    background-color: lightblue;
+}
+
+button {
+    margin-top: 20px;
+}
+
+#results {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.skill-icon {
+    width: 40px;
+    height: 40px;
+}
