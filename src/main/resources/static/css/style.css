@@ -1,0 +1,21 @@
+#base-image {
+    width: 100%;
+    height: auto;
+}
+
+#image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.button-marker {
+    position: absolute;
+    padding: 5px 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    white-space: nowrap;
+    transform: translate(-50%, -50%); /* Center the button */
+}

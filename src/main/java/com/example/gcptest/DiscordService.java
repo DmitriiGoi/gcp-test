@@ -15,14 +15,14 @@ import org.thymeleaf.util.StringUtils;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
+//@Service
 public class DiscordService {
 
     private final JDA jda;
-    @Value("${discord.guildid}")
+//    @Value("${discord.guildid}")
     private String guildId;
 
-    @Autowired
+//    @Autowired
     DiscordService(JDA jda) {
         this.jda = jda;
     }

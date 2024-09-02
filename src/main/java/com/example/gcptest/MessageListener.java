@@ -12,24 +12,24 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.scheduling.support.CronExpression;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class MessageListener extends ListenerAdapter {
 
-    @Autowired
-    @Lazy
+//    @Autowired
+//    @Lazy
     private DiscordService discordService;
-    @Autowired
-    @Lazy
+//    @Autowired
+//    @Lazy
     private JDA jda;
-    @Value("${discord.guildid}")
+//    @Value("${discord.guildid}")
     private String guildId;
 
 
-    @Override
+//    @Override
     public void onMessageReceived(MessageReceivedEvent event) {
     }
 
-    @Override
+//    @Override
     public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
         if (event.getName().equals("reg")) {
             boolean cron = CronExpression.isValidExpression(event.getOption("cron").getAsString());

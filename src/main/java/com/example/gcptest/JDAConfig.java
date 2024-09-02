@@ -15,18 +15,18 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
-@Configuration
+//@Configuration
 public class JDAConfig {
 
-    @Value("${discord.api.token}")
+//    @Value("${discord.api.token}")
     private String token;
-    @Value("${discord.guildid}")
+//    @Value("${discord.guildid}")
     private String guildId;
-    @Autowired
+//    @Autowired
     private MessageListener messageListener;
 
 
-    @Bean
+//    @Bean
     public JDA jda() throws InterruptedException {
         JDA jda = JDABuilder.createLight(token)
                 .addEventListeners(messageListener)

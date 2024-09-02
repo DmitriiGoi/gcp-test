@@ -12,6 +12,11 @@ public class HomeController {
         return "home";
     }
 
+    @GetMapping("/design")
+    public String design(Model model) {
+        return "design";
+    }
+
     @GetMapping("/champions")
     public String champions(Model model) {
         return "champions";

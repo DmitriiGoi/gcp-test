@@ -13,13 +13,13 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
-@Component
+//@Component
 public class CronExecutor {
 
-    @Autowired
+//    @Autowired
     private DiscordService discordService;
 
-    @Scheduled(cron = "* * * * * *")
+//    @Scheduled(cron = "* * * * * *")
     public void cron() {
         List<Role> roles = discordService.getRoles();
         LocalDateTime truncatedTime = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);

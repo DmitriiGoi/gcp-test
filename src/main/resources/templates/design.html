@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Management</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div>
+    <input type="file" id="base-image-file" accept="image/*">
+    <input type="text" id="new-project-name" placeholder="Enter project name">
+    <button onclick="createProject()">Create New Project</button>
+</div>
+<div id="project-select-container">
+    <select id="project-select" onchange="loadProjectBaseImage()">
+        <option value="">Select a Project</option>
+    </select>
+</div>
+<div id="image-container">
+    <img id="base-image" src="" alt="Base Image" style="max-width: 100%; height: auto;" onclick="createButton(event)">
+</div>
+<div id="image-modal" style="display:none; position:fixed; z-index:1000; left:40%; top:40%; transform:translate(-40%, -40%); background:white; padding:20px; border-radius:5px;" oncontextmenu="javascript:closeModal();return false;">
+</div>
+<script src="js/script.js"></script>
+<script src="js/three.min.js" ></script>
+
+</body>
+</html>
